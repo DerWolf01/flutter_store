@@ -1,2 +1,2 @@
-# dart-persistence-api
-An API which helps simplifies working with relational databases using dart. Comparable to JPA but slim and only the minimum API.
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`, and example unit test in `test/`.
