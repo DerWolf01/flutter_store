@@ -4,8 +4,8 @@ import 'package:dart_persistence_api/database/annotations/constraints/appendable
 import 'package:dart_persistence_api/database/annotations/constraints/custom_constraints/auto_increment.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/normal/not_null.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/normal/unique.dart';
-import 'package:dart_persistence_api/model/dao/annotations/integer.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/field.dart';
 import 'package:dart_persistence_api/reflector/reflector.dart';

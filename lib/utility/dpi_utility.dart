@@ -2,7 +2,7 @@ import 'package:characters/characters.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
 import 'package:dart_persistence_api/database/annotations/sql_annotation.dart';
 import 'package:dart_persistence_api/database/database.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/reflector/reflector.dart';
 import 'package:dart_persistence_api/model/model.dart';
 import 'package:reflectable/reflectable.dart';

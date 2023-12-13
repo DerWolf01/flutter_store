@@ -1,5 +1,6 @@
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/database/utility/database_utility.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
 

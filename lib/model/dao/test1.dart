@@ -1,7 +1,8 @@
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/one_to_many.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/primary_key.dart';
-import 'package:dart_persistence_api/model/dao/annotations/integer.dart';
-import 'package:dart_persistence_api/model/dao/annotations/varchar.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/varchar.dart';
+import 'package:dart_persistence_api/model/dao/annotations/lifecycles/save.dart';
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/test.dart';
 import 'package:dart_persistence_api/reflector/reflector.dart';
@@ -24,4 +25,14 @@ class Test1 extends DAO {
 
   @oneToMany
   late List<DAO> test = [];
+
+  @PreSave()
+  Future preSave(Test1 dao) async {
+    print("pre saving $dao");
+  }
+
+  @PostSave()
+  Future postSave(Test1 dao) async {
+    print("post saving $dao");
+  }
 }

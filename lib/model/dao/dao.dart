@@ -1,15 +1,21 @@
+import 'dart:async';
+
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/primary_key.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/constraint.dart';
 import 'package:dart_persistence_api/database/annotations/sql_annotation.dart';
-import 'package:dart_persistence_api/model/dao/annotations/integer.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
+import 'package:dart_persistence_api/model/dao/annotations/lifecycles/delete.dart';
+import 'package:dart_persistence_api/model/dao/annotations/lifecycles/save.dart';
+import 'package:dart_persistence_api/model/dao/annotations/lifecycles/update.dart';
 import 'package:dart_persistence_api/model/dao/field.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
 import 'package:dart_persistence_api/model/model.dart';
 import 'package:dart_persistence_api/model/model_collector.dart';
 import 'package:dart_persistence_api/reflector/reflector.dart';
 import 'package:dart_persistence_api/utility/dpi_utility.dart';
+import 'package:reflectable/reflectable.dart';
 
 const reflector = Reflector();
 
@@ -68,4 +74,44 @@ abstract class DAO extends DPIUtility {
 
   Map<String, ForeignKey> get foreignFields =>
       attributesByAnnotation<ForeignKey>(modelClassMirror.classMirror);
+
+  List<MethodMirror> methodsByAnnotation<T>() => modelClassMirror
+      .classMirror.instanceMembers.values
+      .where((element) => element.metadata.whereType<T>().firstOrNull != null)
+      .toList();
+  FutureOr callPreSave() async {
+    for (var m in methodsByAnnotation<PreSave>()) {
+      await modelInstanceMirror.call(m.simpleName, this);
+    }
+  }
+
+  FutureOr callPostSave() async {
+    for (var m in methodsByAnnotation<PostSave>()) {
+      await modelInstanceMirror.call(m.simpleName, this);
+    }
+  }
+
+  FutureOr callPreUpdate() async {
+    for (var m in methodsByAnnotation<PreUpdate>()) {
+      await modelInstanceMirror.call(m.simpleName, this);
+    }
+  }
+
+  FutureOr callPostUpdate() async {
+    for (var m in methodsByAnnotation<PostUpdate>()) {
+      await modelInstanceMirror.call(m.simpleName, this);
+    }
+  }
+
+  FutureOr callPreDelete() async {
+    for (var m in methodsByAnnotation<PreDelete>()) {
+      await modelInstanceMirror.call(m.simpleName, this);
+    }
+  }
+
+  FutureOr callPostDelete() async {
+    for (var m in methodsByAnnotation<PostDelete>()) {
+      await modelInstanceMirror.call(m.simpleName, this);
+    }
+  }
 }

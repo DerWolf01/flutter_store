@@ -1,7 +1,7 @@
 import 'package:dart_persistence_api/database/database.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/select_options.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/where.dart';
-import 'package:dart_persistence_api/model/dao/annotations/integer.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
 import 'package:dart_persistence_api/model/dao/test.dart';
 import 'package:dart_persistence_api/model/dao/test1.dart';

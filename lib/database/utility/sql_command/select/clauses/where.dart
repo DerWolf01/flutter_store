@@ -1,5 +1,6 @@
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/sql_clause.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
 
 class Wheres extends SQLClause {

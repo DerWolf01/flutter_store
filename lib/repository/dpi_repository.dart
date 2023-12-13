@@ -4,7 +4,7 @@ import 'package:dart_persistence_api/database/utility/sql_command/insert.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/select_options.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/where.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/select.dart';
-import 'package:dart_persistence_api/model/dao/annotations/integer.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
 import 'package:dart_persistence_api/model/model.dart';
@@ -16,18 +16,24 @@ class DPIRepository<T extends DAO> extends DPIRepositoryInterface<T> {
 
   @override
   Future<int> delete(T dao) async {
+    await dao.callPreDelete();
     var db = await initDB();
     for (var foreignField in dao.foreignFields.entries) {
       dao.set(foreignField.key,
           await foreignField.value.delete(dao.get(foreignField.key), dao));
     }
-    return await Delete(db.db, dao,
+
+    var res = await Delete(db.db, dao,
             Wheres([Where('id', InstanceField('id', Integer(), dao.id))]))
         .execute();
+
+    await dao.callPostDelete();
+    return res;
   }
 
   @override
   Future<T> save(T dao) async {
+    await dao.callPreSave();
     var db = (await SQLiteDatabase.init()).db;
     dao.set("id", (await Insert<T>(db, dao).execute()).id);
 
@@ -37,6 +43,8 @@ class DPIRepository<T extends DAO> extends DPIRepositoryInterface<T> {
     }
     print(dao);
     print(dao.id);
+    await dao.callPostSave();
+
     return dao;
   }
 
@@ -69,8 +77,9 @@ class DPIRepository<T extends DAO> extends DPIRepositoryInterface<T> {
   }
 
   @override
-  Future<int> update(T dao) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<int> update(T dao) async {
+    await dao.callPreUpdate();
+    await dao.callPostUpdate();
+    return 0;
   }
 }

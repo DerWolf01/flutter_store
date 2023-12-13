@@ -1,6 +1,7 @@
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/select_options.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/sql_command.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+
 
 class Select extends SQLCommandUsingType {
   Select(super.db, super.dao, {this.selectOptions, super.tableName});

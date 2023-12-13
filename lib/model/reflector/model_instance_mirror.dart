@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dart_persistence_api/model/model.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
 import 'package:dart_persistence_api/reflector/reflector.dart';
@@ -11,6 +13,7 @@ class ModelInstanceMirror<T extends Model> extends ModelClassMirror {
   }
   late InstanceMirror instanceMirror;
   late T instance;
+  @override
   Map<String, VariableMirror> get instanceMembers {
     if (!instanceMirror.hasReflectee) {
       return {};
@@ -54,4 +57,7 @@ class ModelInstanceMirror<T extends Model> extends ModelClassMirror {
     }
     return res;
   }
+
+  FutureOr call(String name, dynamic param) async =>
+      await instanceMirror.invoke(name, [param]);
 }

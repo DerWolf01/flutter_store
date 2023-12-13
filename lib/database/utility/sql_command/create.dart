@@ -1,6 +1,7 @@
 import 'package:dart_persistence_api/database/annotations/constraints/normal/normal_constraint.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/sql_command.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
+
 
 class Create extends SQLCommandUsingInstance {
   Create(super.db, super.dao, {this.fields});

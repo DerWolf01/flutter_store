@@ -1,15 +1,13 @@
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/primary_key.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/normal/not_null.dart';
-import 'package:dart_persistence_api/database/annotations/constraints/normal/unique.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
+import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/database/database.dart';
-import 'package:dart_persistence_api/database/utility/sql_command/create.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/delete.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/select_options.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/clauses/where.dart';
 import 'package:dart_persistence_api/database/utility/sql_command/select/select.dart';
-import 'package:dart_persistence_api/model/dao/annotations/integer.dart';
-import 'package:dart_persistence_api/model/dao/annotations/sql_type.dart';
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/field.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
