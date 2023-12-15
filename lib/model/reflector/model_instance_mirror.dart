@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:dart_persistence_api/model/model.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
 import 'package:reflectable/reflectable.dart';
-
-const reflector = Reflector();
+import 'package:dart_persistence_api/reflector/reflector.dart';
 
 class ModelInstanceMirror<T extends Model> extends ModelClassMirror {
   ModelInstanceMirror(T model) : super(model.runtimeType) {

@@ -23,8 +23,11 @@ class DPIRepository<T extends DAO> extends DPIRepositoryInterface<T> {
           await foreignField.value.delete(dao.get(foreignField.key), dao));
     }
 
-    var res = await Delete(db.db, dao,
-            Wheres([Where('id', InstanceField('id', Integer(), dao.id))]))
+    var res = await Delete(
+            db.db,
+            dao,
+            Wheres(
+                [Where('id', InstanceField<Integer>('id', Integer(), dao.id))]))
         .execute();
 
     await dao.callPostDelete();

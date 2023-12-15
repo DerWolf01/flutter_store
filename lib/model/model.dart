@@ -1,16 +1,10 @@
-import 'dart:async';
-
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/one_to_many.dart';
-import 'package:dart_persistence_api/model/dao/dao.dart';
-import 'package:dart_persistence_api/model/model_collector.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
 import 'package:dart_persistence_api/model/reflector/model_instance_mirror.dart';
 import 'package:dart_persistence_api/reflector/reflector.dart';
-import 'package:dart_persistence_api/utility/dpi_utility.dart';
-import 'package:reflectable/reflectable.dart';
 
-const reflector = Reflector();
+import 'package:reflectable/reflectable.dart';
 
 @reflector
 abstract class Model {
@@ -73,13 +67,13 @@ abstract class Model {
     return res;
   }
 
-  ModelClassMirror get modelClassMirror {
+  ModelClassMirror<Model> get modelClassMirror {
     print("getting model class mirror for $this");
-    return ModelClassMirror(runtimeType);
+    return ModelClassMirror<Model>(runtimeType);
   }
 
-  ModelInstanceMirror get modelInstanceMirror {
-    return ModelInstanceMirror(this);
+  ModelInstanceMirror<Model> get modelInstanceMirror {
+    return ModelInstanceMirror<Model>(this);
   }
 
   Map<String, VariableMirror> get instanceMembers {

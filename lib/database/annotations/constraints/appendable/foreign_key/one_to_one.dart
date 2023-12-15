@@ -8,16 +8,11 @@ import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart
 import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/field.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
-
-const reflector = Reflector();
+import '../../../../../../reflector/reflector.dart';
 
 @reflector
 class OneToOne<FROM extends DAO, TO extends DAO> extends ForeignKey<FROM, TO> {
   const OneToOne();
-
-
-
 
   @override
   Future<TO> query(int fromId) async {
@@ -36,14 +31,12 @@ class OneToOneConnection<FROM extends DAO, TO extends DAO>
   OneToOneConnection(super.foreignKey);
 
   @override
-  Field<SQLType> get idField => Field<Integer>('id', Integer(),
+  Field get idField => Field<Integer>('id', Integer(),
       constraints: [Unique(), NotNull(), AutoIncrement()]);
   @override
-  Field<SQLType> get fromField =>
-      Field<Integer>('${from.snakeCaseName}_id', Integer(),
-          constraints: [PrimaryKey()]);
+  Field get fromField => Field<Integer>('${from.snakeCaseName}_id', Integer(),
+      constraints: [PrimaryKey()]);
   @override
-  Field<SQLType> get toField =>
-      Field<Integer>('${to.snakeCaseName}_id', Integer(),
-          constraints: [PrimaryKey()]);
+  Field get toField => Field<Integer>('${to.snakeCaseName}_id', Integer(),
+      constraints: [PrimaryKey()]);
 }

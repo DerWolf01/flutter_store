@@ -8,14 +8,10 @@ import 'package:dart_persistence_api/database/utility/sql_command/select/clauses
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
+import '../../../../../../reflector/reflector.dart';
 import 'package:dart_persistence_api/model/model.dart';
 import 'package:dart_persistence_api/repository/dpi_repository.dart';
-
-import 'package:dart_persistence_api/repository/dpi_repository_interface.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-
-const reflector = Reflector();
+import 'package:dart_persistence_api/reflector/reflector.dart';
 
 @reflector
 abstract class ForeignKey<FROM extends DAO, TO extends DAO>
@@ -44,7 +40,7 @@ abstract class ForeignKey<FROM extends DAO, TO extends DAO>
               wheres: Wheres([
             Where(
                 'id',
-                InstanceField(
+                InstanceField<Integer>(
                     'id', Integer(), map[connection.toField.name] as int))
           ])));
       print("query-map: $data");
@@ -68,7 +64,7 @@ abstract class ForeignKey<FROM extends DAO, TO extends DAO>
               wheres: Wheres([
             Where(
                 'id',
-                InstanceField(
+                InstanceField<Integer>(
                     'id', Integer(), map[connection.toField.name] as int))
           ])));
       print("query-map: $data");
@@ -79,7 +75,7 @@ abstract class ForeignKey<FROM extends DAO, TO extends DAO>
   }
 
   Future query(int fromId) async {
-    var mirror = ModelClassMirror(TO);
+    var mirror = ModelClassMirror<TO>(TO);
     return (await queryMap(fromId)).map((d) => mirror.fromMap(d)).toList();
   }
 

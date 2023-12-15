@@ -15,3 +15,5 @@ class Reflector extends Reflectable {
           typeRelationsCapability,
         );
 }
+
+const reflector = Reflector();

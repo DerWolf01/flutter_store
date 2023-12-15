@@ -3,11 +3,9 @@ import 'package:dart_persistence_api/database/annotations/constraints/appendable
 import 'package:dart_persistence_api/database/annotations/sql_annotation.dart';
 import 'package:dart_persistence_api/database/database.dart';
 import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
+import '../../reflector/reflector.dart';
 import 'package:dart_persistence_api/model/model.dart';
 import 'package:reflectable/reflectable.dart';
-
-const reflector = Reflector();
 
 abstract class DPIUtility extends Model {
   const DPIUtility();

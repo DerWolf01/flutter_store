@@ -5,7 +5,7 @@ import 'package:dart_persistence_api/database/annotations/sql_types/varchar.dart
 import 'package:dart_persistence_api/model/dao/annotations/lifecycles/save.dart';
 import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/test.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
+import '../../../reflector/reflector.dart';
 
 const reflector2 = Reflector();
 const oneToMany = OneToMany<Test1, Test>();

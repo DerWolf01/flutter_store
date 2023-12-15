@@ -6,7 +6,7 @@ import 'package:dart_persistence_api/repository/dpi_repository_interface.dart';
 
 class DPIGenericRepository extends DPIRepositoryInterface {
   @override
-  all(ModelClassMirror<Model> modelClassMirror) {
+  all(ModelClassMirror modelClassMirror) {
     // TODO: implement all
     throw UnimplementedError();
   }

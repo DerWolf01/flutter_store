@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/primary_key.dart';
 import 'package:dart_persistence_api/database/annotations/constraints/constraint.dart';
-import 'package:dart_persistence_api/database/annotations/sql_annotation.dart';
 import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart';
 import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dart';
 import 'package:dart_persistence_api/model/dao/annotations/lifecycles/delete.dart';
@@ -11,15 +10,11 @@ import 'package:dart_persistence_api/model/dao/annotations/lifecycles/save.dart'
 import 'package:dart_persistence_api/model/dao/annotations/lifecycles/update.dart';
 import 'package:dart_persistence_api/model/dao/field.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
-import 'package:dart_persistence_api/model/model.dart';
-import 'package:dart_persistence_api/model/model_collector.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
+
 import 'package:dart_persistence_api/utility/dpi_utility.dart';
 import 'package:reflectable/reflectable.dart';
 
-const reflector = Reflector();
 
-@reflector
 abstract class DAO extends DPIUtility {
   DAO();
   DAO.fromMap(super.map) : super.fromMap();
@@ -36,7 +31,8 @@ abstract class DAO extends DPIUtility {
       }
 
       if (dataTypeInstance != null) {
-        res[dec.key] = InstanceField(dec.key, dataTypeInstance, get(dec.key),
+
+        res[dec.key] = InstanceField<T>(dec.key, dataTypeInstance, get(dec.key),
             constraints:
                 dec.value.metadata.whereType<SQLConstraint>().toList());
       }

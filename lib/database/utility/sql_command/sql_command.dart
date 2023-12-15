@@ -2,6 +2,7 @@ import 'package:dart_persistence_api/database/annotations/sql_types/sql_type.dar
 import 'package:dart_persistence_api/database/utility/database_utility.dart';
 
 import 'package:dart_persistence_api/model/dao/dao.dart';
+import 'package:dart_persistence_api/model/model.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
 
 abstract class SQLCommand extends DatabaseUtility {
@@ -19,7 +20,7 @@ abstract class SQLCommandUsingType extends SQLCommand {
 
   final String? tableName;
 
-  ModelClassMirror get daoMirror => ModelClassMirror(type);
+  ModelClassMirror<Model> get daoMirror => ModelClassMirror<Model>(type);
 
   @override
   String get table => tableName ?? daoMirror.snakeCaseName;

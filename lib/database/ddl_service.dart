@@ -1,11 +1,9 @@
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
 import 'package:dart_persistence_api/database/utility/database_utility.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
+import '../../reflector/reflector.dart';
 import 'package:dart_persistence_api/model/model_collector.dart';
 import 'package:dart_persistence_api/utility/dpi_utility.dart';
 import 'package:reflectable/mirrors.dart';
-
-const reflector = Reflector();
 
 class DDLService extends DatabaseUtility {
   DDLService(super.db);
@@ -15,7 +13,7 @@ class DDLService extends DatabaseUtility {
   //         ? false
   //         : true;
   // Future<void> createTables() async {
-  //   List<Type> models = ModelCollector.collectModels();
+  //   List<Type> models = ClassCollector.collectModels();
   //   for (var model in models) {
   //     ClassMirror classMirror = reflector.reflectType(model) as ClassMirror;
 

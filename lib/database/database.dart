@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:dart_persistence_api/reflector/reflector.dart';
+import '../../reflector/reflector.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart' as path;
 
-const reflector = Reflector();
 Directory mainPath = Directory.current;
 
 class SQLiteDatabase {

@@ -1,12 +1,9 @@
 import 'package:dart_persistence_api/database/annotations/constraints/appendable/foreign_key/foreign_key.dart';
+import 'package:dart_persistence_api/model/dao/test.dart';
 import 'package:dart_persistence_api/model/model.dart';
-import 'package:dart_persistence_api/model/model_collector.dart';
-import 'package:dart_persistence_api/model/reflector/model_instance_mirror.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
 import 'package:dart_persistence_api/utility/dpi_utility.dart';
 import 'package:reflectable/reflectable.dart';
-
-const reflector = Reflector();
+import 'package:dart_persistence_api/reflector/reflector.dart';
 
 class ModelClassMirror<T extends Model> extends DPIUtility {
   ModelClassMirror(this.type)

@@ -3,11 +3,8 @@ import 'package:dart_persistence_api/database/annotations/sql_types/integer.dart
 import 'package:dart_persistence_api/database/annotations/sql_types/varchar.dart';
 
 import 'package:dart_persistence_api/model/dao/dao.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
 
-const reflector = Reflector();
 
-@reflector
 class Test extends DAO {
   Test(this.name);
   Test.fromMap(super.map) : super.fromMap();
@@ -18,7 +15,4 @@ class Test extends DAO {
 
   @Varchar()
   late String name;
-
-
-  
 }

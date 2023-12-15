@@ -12,10 +12,8 @@ import 'package:dart_persistence_api/model/dao/dao.dart';
 import 'package:dart_persistence_api/model/dao/field.dart';
 import 'package:dart_persistence_api/model/dao/instance_field.dart';
 import 'package:dart_persistence_api/model/reflector/model_class_mirror.dart';
-import 'package:dart_persistence_api/reflector/reflector.dart';
+import '../../../../../../reflector/reflector.dart';
 import 'package:dart_persistence_api/utility/alphabet_utility.dart';
-
-const reflector = Reflector();
 
 @reflector
 abstract class ConnectionEntity<RelationType extends ForeignKey,
@@ -32,16 +30,14 @@ abstract class ConnectionEntity<RelationType extends ForeignKey,
             to.snakeCaseName
           ]).join('_')}_connection';
 
-  Field<SQLType> get idField =>
+  Field get idField =>
       Field<Integer>('id', Integer(), constraints: [PrimaryKey()]);
-  Field<SQLType> get fromField =>
-      Field<Integer>('${from.snakeCaseName}_id', Integer(),
-          constraints: [NotNull()]);
-  Field<SQLType> get toField =>
-      Field<Integer>('${to.snakeCaseName}_id', Integer(),
-          constraints: [NotNull()]);
+  Field get fromField => Field<Integer>('${from.snakeCaseName}_id', Integer(),
+      constraints: [NotNull()]);
+  Field get toField => Field<Integer>('${to.snakeCaseName}_id', Integer(),
+      constraints: [NotNull()]);
 
-  List<Field<SQLType>> get fields => [idField, fromField, toField];
+  List<Field> get fields => [idField, fromField, toField];
 
   String get fieldsString =>
       fields.map((e) => '${e.name} ${e.type.toSQL()}').join(', ');
@@ -65,10 +61,12 @@ FOREIGN KEY(${to.snakeCaseName}_id) REFERENCES ${to.snakeCaseName}(id)
         Wheres([
           Where(
               '${this.from.snakeCaseName}_id',
-              InstanceField(
+              InstanceField<Integer>(
                   from.modelClassMirror.simpleName, Integer(), from.id)),
-          Where('${this.to.snakeCaseName}_id',
-              InstanceField(to.modelClassMirror.simpleName, Integer(), to.id))
+          Where(
+              '${this.to.snakeCaseName}_id',
+              InstanceField<Integer>(
+                  to.modelClassMirror.simpleName, Integer(), to.id))
         ])).execute();
   }
 
@@ -96,7 +94,7 @@ FOREIGN KEY(${to.snakeCaseName}_id) REFERENCES ${to.snakeCaseName}(id)
             columns: ['id', fromField.name, toField.name],
             wheres: Wheres([
               Where(toField.name,
-                  InstanceField(toField.name, Integer(), model.id))
+                  InstanceField<Integer>(toField.name, Integer(), model.id))
             ]))).execute();
   }
 

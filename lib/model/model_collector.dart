@@ -3,7 +3,7 @@ import 'package:dart_persistence_api/model/dao/test.dart';
 import 'package:dart_persistence_api/model/dao/test1.dart';
 import 'package:dart_persistence_api/model/model.dart';
 
-class ModelCollector {
+class ClassCollector {
   static final List<Type> models = [];
   static final Map<String, Type> modelsMap = {"Test": Test, "Test1": Test1};
   String getTableName() {
