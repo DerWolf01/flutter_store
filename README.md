@@ -1,1 +1,1 @@
-An API which helps simplifies working with relational databases using dart. Comparable to JPA but slim and only the minimum API.
+This will be and An API which resembles the dart_store but compatible with flutter apps by using the reflectable package instead of using the "dart:mirrors" package helps and simplifies working with relational databases using Flutter/Dart. Comparable to JPA but slim and only the minimum API.
